@@ -1,26 +1,23 @@
 import React from 'react';
+import { vote } from './reducers/anecdoteReducer'
+import { createNew } from './reducers/anecdoteReducer'
 
 const App = (props) => {
   const anecdotes = props.store.getState()
 
-  const vote = (id) => {
-    console.log('vote', id)
-    props.store.dispatch({
-      type: 'ADD_VOTE',
-      data: {id}
-    })
+  const addVote = (voteId) => {
+    props.store.dispatch(
+      vote(voteId)
+    )
   }
 
   const addNew = (event) => {
     event.preventDefault()
     const content = event.target.anecdoteInput.value
     console.log("content on: ", content)
-    props.store.dispatch({
-      type: 'ADD_NEW',
-      data: {
-        content: event.target.anecdoteInput.value
-      }
-    })
+    props.store.dispatch(
+      createNew(content)
+    )
     
   }
 
@@ -34,7 +31,7 @@ const App = (props) => {
           </div>
           <div>
             has {anecdote.votes}
-            <button onClick={() => vote(anecdote.id)}>vote</button>
+            <button onClick={() => addVote(anecdote.id)}>vote</button>
           </div>
         </div>
       )}
