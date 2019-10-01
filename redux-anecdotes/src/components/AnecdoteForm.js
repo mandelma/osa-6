@@ -1,7 +1,6 @@
 import React from 'react'
 import { createNew } from '../reducers/anecdoteReducer'
 
-
 const AnecdoteForm = (props) => {
   const addNew = (event) => {
     event.preventDefault()
@@ -10,7 +9,6 @@ const AnecdoteForm = (props) => {
     props.store.dispatch(
       createNew(content)
     )
-    
   }
   return (
     <div>
