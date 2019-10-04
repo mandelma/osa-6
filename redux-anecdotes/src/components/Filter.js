@@ -6,7 +6,8 @@ const Filter = (props) => {
   const handleChange = (event) => {
     event.preventDefault()
     const part = event.target.filter.value
-    props.store.dispatch(createFilter(part))
+    event.target.filter.value = ''
+    props.createFilter(part)
   }
 
   const style = {
@@ -19,7 +20,6 @@ const Filter = (props) => {
         Filter: <input name = 'filter'></input>
         <button>Filter</button>
       </form>
-      
     </div>
   )
 }
@@ -32,6 +32,11 @@ const mapStateToProps = (state) => {
   }
 }
 
+const mapDispatchToProps = {
+  createFilter
+}
+
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(Filter)

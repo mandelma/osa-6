@@ -15,5 +15,4 @@ const filterReducer = (state = null, action) => {
   }
 }
 
-
 export default filterReducer

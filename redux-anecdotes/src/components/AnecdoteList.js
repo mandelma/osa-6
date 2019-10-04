@@ -4,26 +4,24 @@ import { vote } from '../reducers/anecdoteReducer'
 import { voteMsg, clearNotification } from '../reducers/notificationReducer.js'
 
 const AnecdoteList = (props) => {
-  const filter = props.store.getState().filter
+  const filter = props.filter
   const anecdotes = filter === null 
-  ? props.store.getState().anecdotes
+  ? props.anecdotes
   :
-  props.store.getState().anecdotes.filter(obj => obj.content.toLowerCase().includes(filter))
+  props.anecdotes.filter(obj => obj.content.toLowerCase().includes(filter))
   
   const voteMessage = (votedAnecdoteId) => {
     
     const votedAnecdote = anecdotes.filter(item => item.id === votedAnecdoteId)[0].content
-    props.store.dispatch(voteMsg(votedAnecdote))
+    props.voteMsg(votedAnecdote)
     setTimeout(() => {
-      props.store.dispatch(clearNotification())
+      props.clearNotification()
     }, 5000)
   }
   
   const addVote = (voteId) => {
-    props.store.dispatch(
-      vote(voteId),
-      voteMessage(voteId)
-    )
+    props.vote(voteId)
+    voteMessage(voteId)
   }
 
   return(
@@ -52,6 +50,13 @@ const mapStateToProps = (state) => {
   }
 }
 
+const mapDispatchToProps = {
+  vote,
+  voteMsg,
+  clearNotification
+}
+
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(AnecdoteList)
