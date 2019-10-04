@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { vote } from '../reducers/anecdoteReducer'
 import { voteMsg, clearNotification } from '../reducers/notificationReducer.js'
 
@@ -44,4 +45,16 @@ const AnecdoteList = (props) => {
   )
 }
 
-export default AnecdoteList
+const mapStateToProps = (state) => {
+  console.log('State', state)
+  return{
+    anecdotes: state.anecdotes,
+    filter: state.filter
+  }
+}
+
+//export default AnecdoteList
+
+export default connect(
+  mapStateToProps
+)(AnecdoteList)
