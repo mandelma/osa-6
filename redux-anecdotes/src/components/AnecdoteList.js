@@ -20,7 +20,6 @@ const AnecdoteList = (props) => {
   }
   
   const addVote = (voteId) => {
-    console.log('added now')
     props.store.dispatch(
       vote(voteId),
       voteMessage(voteId)
@@ -52,8 +51,6 @@ const mapStateToProps = (state) => {
     filter: state.filter
   }
 }
-
-//export default AnecdoteList
 
 export default connect(
   mapStateToProps

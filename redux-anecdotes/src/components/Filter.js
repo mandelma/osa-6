@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { createFilter } from '../reducers/filterReducer'
 
 const Filter = (props) => {
@@ -23,4 +24,14 @@ const Filter = (props) => {
   )
 }
 
-export default Filter
+const mapStateToProps = (state) => {
+  console.log(state)
+  return{
+    filter: state.filter,
+    anecdotes: state.anecdotes
+  }
+}
+
+export default connect(
+  mapStateToProps
+)(Filter)
