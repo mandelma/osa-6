@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { vote } from '../reducers/anecdoteReducer'
-import { voteMsg, clearNotification } from '../reducers/notificationReducer.js'
+import { voteMsg, clearNotification } from '../reducers/notificationReducer'
 
 const AnecdoteList = (props) => {
   const filter = props.filter
