@@ -1,32 +1,25 @@
 
-export const voteMsg = (voteMessage) => {
-  return {
-    type: 'VOTE_MESSAGE',
-    data: voteMessage
-  }
-}
-
-export const createMsg = (content) => {
-  return {
-    type: 'CREATE_MESSAGE',
-    data: content
-  }
-}
-
-export const clearNotification = () => {
-  return {
-    type: 'CLEAR'
+export const createNotification = (msg, time) => {
+  return async dispatch => {
+    dispatch({
+      type: 'SET_TEXT',
+      data: msg
+    })
+    setTimeout(() => {
+      dispatch({
+        type: 'CLEAR',
+        data: null
+      })
+    }, time * 1000)
   }
 }
 
 const notificationReducer = (state = null, action) => {
   switch (action.type) {
-    case 'VOTE_MESSAGE':
-      return 'Anecdote ' + action.data + ' has voted!'
-    case 'CREATE_MESSAGE':
-      return `A new anecdote '${action.data}' was creates succesfully!`
+    case 'SET_TEXT':
+      return action.data
     case 'CLEAR':
-      return null
+      return action.data
     default: 
       return state
   }
