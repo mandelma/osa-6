@@ -20,7 +20,7 @@ const AnecdoteList = (props) => {
   }
   
   const addVote = (voteId) => {
-    props.vote(voteId)
+    props.vote(voteId, anecdotes)
     voteMessage(voteId)
   }
 
